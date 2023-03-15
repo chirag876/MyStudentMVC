@@ -1,0 +1,100 @@
+﻿@model MyStudentMVC.Models.AddFaculty
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>AddFaculty</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(m => m.Id)
+                @Html.TextBoxFor(m => m.Id, new { @class = "form-control" })              
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div> <br />
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.FacultyName)
+                @Html.TextBoxFor(m => m.FacultyName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.FacultyName, "", new { @class = "text-danger" })
+            </div><br />
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.PhoneNumber)
+                @Html.DisplayFor(m => m.PhoneNumber, new { @class = "form-control" })
+                @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-danger" })
+            </div><br />
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Password)
+                @Html.PasswordFor(m => m.Password ,new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+            </div><br />
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Email)
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Email, "Email Required", new { @class = "text-danger" })           
+            </div><br />
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Designation)
+                @Html.DropDownList("Designation",
+                new List<SelectListItem>()
+                {
+                new SelectListItem() { Text="Head", Value="Head"},
+                new SelectListItem() { Text="Instructor", Value="Instructor"}
+                })
+                <span asp-validation-for="Designation" class="text-danger"></span>               
+            </div><br />
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Gender)
+                Male: @Html.RadioButtonFor(m => m.Gender,"Male")
+                Female: @Html.RadioButtonFor(m => m.Gender,"Female")
+                <span asp-validation-for="Gender" class="text-danger"></span>               
+            </div><br />
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.grade)
+                @Html.TextBoxFor(m => m.grade, new { @class = "form-control" })
+                <span asp-validation-for="grade" class="text-danger"></span>
+            </div><br />
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="reset" value="Reset" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+
+    <a asp-action="Index">Back to List</a>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+<style>
+    label {
+        font-weight: bold;
+    }
+
+    h4 {
+        text-align: center;
+    }
+
+    div {
+        background-color: wheat;
+    }
+</style>

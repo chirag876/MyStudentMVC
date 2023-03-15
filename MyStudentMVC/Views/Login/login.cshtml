@@ -1,0 +1,217 @@
+﻿@model MyStudentMVC.Models.Login
+@using MyStudentMVC.Models;
+@{
+    ViewData["Title"] = "login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    function myFunction() {
+        var x = document.getElementById("myInput");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+</script>
+@*<div class="alert-success">@TempData["Alert"]</div>*@
+<h1>login</h1>
+
+<div class="alert-danger" style="text-align:center">@TempData["Alert1"]</div>
+<hr class="format">
+
+<div class="row">
+
+    <div class="col-md-4">
+
+        <form asp-action="login" asp-controller="Login">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>*@
+
+            <div class="form-group" asp-action="password" method="post">
+                @Html.LabelFor(m => m.userName)
+                <input asp-for="userName" class="form-control" placeholder="Please enter userName" style="border: 2px solid black" />
+                @*@Html.TextBoxFor(m => m.userName, new { @class = "form-control" })*@
+                @Html.ValidationMessageFor(m => m.userName, "", new { @class = "text-danger" })
+                @*<label asp-for="userName" class="control-label"></label>
+
+                @*<span asp-validation-for="userName" class="text-danger"></span>*@
+            </div><br />
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Password)
+                <input asp-for="Password" class="form-control" placeholder="Please enter password" type="password" style="border: 2px solid black" id="myInput" />
+                <input type="checkbox" onclick="myFunction()"><b>Show Password</b>
+                @*@Html.TextBoxFor(m => m.Password, new { @class = "form-control" })*@
+                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                @*<label asp-for="Password" class="control-label"></label>*@
+
+                @*<span asp-validation-for="Password" class="text-danger"></span>*@
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Login" class="btn btn-primary" />
+
+                <button class="btn btn-danger" style="width:100%; border: 2px solid black; margin: 8px 0; box-sizing: border-box;display: inline-block">
+                    <a href="@Url.ActionLink("Create","Registration")" style="text-decoration:None; font-weight:bold;color:white"> Register </a>
+                </button>
+
+                <button class="btn btn-warning" style="width:100%; border: 2px solid black; margin: 8px 0; box-sizing: border-box;display: inline-block">
+                    <a href="@Url.Action("password")" style="text-decoration:None; font-weight:bold; color:white">Reset Password</a>
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+@*<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+*@
+<style>
+    /*    Body {
+                        font-family: Calibri, Helvetica, sans-serif;
+                    }
+
+                    button {
+                        background-color: #4CAF50;
+                        width: 100%;
+                        color: orange;
+                        padding: 15px;
+                        margin: 10px 0px;
+                        border: none;
+                        cursor: pointer;
+                    }
+
+
+
+                    button:hover {
+                        opacity: 0.7;
+                    }
+
+                    .cancelbtn {
+                        width: auto;
+                        padding: 10px 18px;
+                        margin: 10px 5px;
+                    }
+
+
+                    .container {
+                        padding: 25px;
+                        background-color: ;
+                    }
+
+
+
+                    label {
+                        font-weight: bold;
+                    }
+
+                    .alert-info {
+                        visibility: visible;
+                    }*/
+
+    /* Text between <hr> tag */
+
+    hr.format {
+        padding: 0;
+        border: none;
+        border-top: medium double #333;
+        color: #333;
+        text-align: center;
+    }
+
+        hr.format:after {
+            content: 'www.MyStudentMVC.com';
+            display: inline-block;
+            position: relative;
+            top: -0.7em;
+            font-size: 1.5em;
+            padding: 0 0.25em;
+            background: white;
+        }
+
+    .row {
+        display: flex;
+        justify-content: center;
+    }
+
+    input[type=submit] {
+        width: 100%;
+        margin: 8px 0;
+        /*padding: 12px 20px*/;
+        display: inline-block;
+        border: 2px solid black;
+        box-sizing: border-box;
+        font-weight:bold;
+    }
+
+    header {
+        display: none;
+    }
+
+    footer {
+        display: none;
+    }
+
+    Body {
+        font-family: Calibri, Helvetica, sans-serif;
+        background-image: url("/css/2592038.jpg");
+    }
+
+    #right {
+        width: 400px;
+        height: 150px;
+        border: 5px solid red;
+        background-color: lightgreen;
+        object-fit: none;
+        object-position: right top;
+    }
+
+    .login {
+        width: 382px;
+        overflow: hidden;
+        margin: auto;
+        margin: 20 0 0 450px;
+        padding: 80px;
+        border-radius: 15px;
+    }
+
+    h1 {
+        text-align: center;
+        font-weight: bolder;
+    }
+
+    h2 {
+        text-align: center;
+        padding: 20px;
+    }
+
+    label {
+        color: black;
+        font-size: 17px;
+        font-weight: bold;
+    }
+
+
+
+    span {
+        color: white;
+        font-size: 17px;
+    }
+
+    /*.container {
+                        padding: 25px;
+                        background-color:lightgreen;
+                        height:auto;
+                    }*/
+</style>   

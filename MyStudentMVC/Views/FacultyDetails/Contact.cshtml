@@ -1,0 +1,102 @@
+﻿@model MyStudentMVC.Models.ContactQuery
+@{
+    ViewData["Title"] = "Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: wheat;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    input[type=text], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=submit] {
+        background-color: #04AA6D;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+
+    input[type=reset] {
+        background-color: #04AA6D;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        input[type=reset]:hover {
+            background-color: #45a049;
+        }
+
+    .container {
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 20px;
+        font-weight: bold;
+    }
+</style>
+
+<h3 style="text-align:center; font-weight:bold">Contact Us</h3>
+
+<div class="container">
+    <form action="Contact" asp-asp-action="Contact" method="post">
+        <div style="font-weight:bold">
+            @Html.LabelFor(m=>m.FullName)
+            @Html.TextBoxFor(m=>m.FullName)
+            <br />
+        </div>
+
+
+        <div style="font-weight:bold">
+            @Html.LabelFor(m=>m.Country)
+            @Html.DropDownListFor(m=>m.Country,
+            new List<SelectListItem>()
+            {
+            new SelectListItem() { Text="India", Value="India"},
+            new SelectListItem() { Text="Australia", Value="Australia"},
+            new SelectListItem() { Text="Netherland", Value="Netherland"},
+            new SelectListItem() { Text="Bangladesh", Value="Bangladesh"},
+            new SelectListItem() { Text="Angola", Value="Angola"} ,
+            new SelectListItem() { Text="Afghanistan", Value="Afghanistan"} ,
+            new SelectListItem() { Text="Brunei", Value="Brunei"} ,
+            new SelectListItem() { Text="Cameroon", Value="Cameroon"} ,
+            new SelectListItem() { Text="Canada", Value="Canada"} ,
+            new SelectListItem() { Text="China", Value="China"} ,
+            new SelectListItem() { Text="Denmark", Value="Denmark"}
+            })
+            <br />
+        </div>
+
+        <div style="font-weight:bold">
+            @Html.LabelFor(m=>m.Message)
+            @Html.TextAreaFor(m=>m.Message)
+            <br />
+        </div>
+        <input type="submit" value="Submit" asp-action="Contact">
+        <input type="reset" value="Reset">
+    </form>
+</div>
